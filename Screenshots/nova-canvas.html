@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>NovaVPN — App Showcase</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&family=Exo+2:wght@200;300;400;600;800&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --black:    #07090f;
+    --deep:     #0a0f1e;
+    --navy:     #0d1526;
+    --mid:      #111c2e;
+    --card:     #162035;
+    --accent:   #00e5ff;
+    --accent2:  #00b4cc;
+    --green:    #00e676;
+    --orange:   #ff6d00;
+    --red:      #ff1744;
+    --white:    #ecf0f1;
+    --gray:     #607080;
+    --gray2:    #3a4a5a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Exo 2', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 60px 24px;
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,229,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,229,255,0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 100%);
+  }
+
+  .hero-glow {
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(0,229,255,0.08) 0%, transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .hero-badge {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--accent);
+    border: 1px solid rgba(0,229,255,0.3);
+    padding: 6px 20px;
+    border-radius: 100px;
+    margin-bottom: 28px;
+    background: rgba(0,229,255,0.05);
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .hero-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: clamp(64px, 12vw, 120px);
+    font-weight: 700;
+    letter-spacing: 12px;
+    line-height: 0.9;
+    text-align: center;
+    animation: fadeUp 0.7s 0.1s ease both;
+  }
+
+  .hero-title span {
+    display: block;
+    background: linear-gradient(135deg, var(--accent) 0%, #fff 40%, var(--accent2) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-title .vpn-sub {
+    font-size: 0.35em;
+    letter-spacing: 24px;
+    color: var(--gray);
+    -webkit-text-fill-color: var(--gray);
+    background: none;
+    font-weight: 300;
+    margin-top: 8px;
+  }
+
+  .hero-tagline {
+    margin-top: 24px;
+    font-size: 16px;
+    color: var(--gray);
+    letter-spacing: 2px;
+    text-align: center;
+    animation: fadeUp 0.7s 0.2s ease both;
+  }
+
+  .hero-tags {
+    display: flex;
+    gap: 10px;
+    margin-top: 32px;
+    flex-wrap: wrap;
+    justify-content: center;
+    animation: fadeUp 0.7s 0.3s ease both;
+  }
+
+  .tag {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    padding: 5px 14px;
+    border-radius: 4px;
+    border: 1px solid var(--gray2);
+    color: var(--gray);
+    background: rgba(255,255,255,0.02);
+    letter-spacing: 1px;
+  }
+
+  .tag.accent { border-color: rgba(0,229,255,0.4); color: var(--accent); background: rgba(0,229,255,0.05); }
+  .tag.green  { border-color: rgba(0,230,118,0.4); color: var(--green);  background: rgba(0,230,118,0.05); }
+
+  /* ── PHONE MOCKUPS ── */
+  .screens-section {
+    padding: 80px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 80px;
+  }
+
+  .section-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--accent);
+    margin-bottom: 16px;
+    text-align: center;
+  }
+
+  .section-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+
+  .section-sub {
+    color: var(--gray);
+    font-size: 14px;
+    text-align: center;
+    max-width: 480px;
+    line-height: 1.7;
+  }
+
+  /* Phone frame */
+  .phones-row {
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: flex-end;
+  }
+
+  .phone-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .phone-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--gray);
+  }
+
+  .phone {
+    width: 220px;
+    height: 440px;
+    border-radius: 36px;
+    border: 2px solid rgba(255,255,255,0.12);
+    background: var(--navy);
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+      0 0 0 1px rgba(0,0,0,0.8),
+      0 40px 80px rgba(0,0,0,0.6),
+      inset 0 1px 0 rgba(255,255,255,0.08);
+  }
+
+  .phone.hero-phone {
+    width: 260px;
+    height: 520px;
+    border-color: rgba(0,229,255,0.3);
+    box-shadow:
+      0 0 0 1px rgba(0,0,0,0.8),
+      0 0 60px rgba(0,229,255,0.15),
+      0 60px 100px rgba(0,0,0,0.7),
+      inset 0 1px 0 rgba(255,255,255,0.08);
+  }
+
+  .phone-notch {
+    position: absolute;
+    top: 12px; left: 50%;
+    transform: translateX(-50%);
+    width: 80px; height: 24px;
+    background: #000;
+    border-radius: 12px;
+    z-index: 10;
+  }
+
+  /* ── SCREEN: DISCONNECTED ── */
+  .screen-disconnected {
+    width: 100%; height: 100%;
+    background: linear-gradient(180deg, #07090f 0%, #0a0f1e 50%, #0d1526 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 60px;
+    position: relative;
+  }
+
+  .screen-disconnected .sg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,229,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,229,255,0.025) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  .app-wordmark {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 6px;
+    color: var(--accent);
+    position: relative;
+    z-index: 1;
+  }
+
+  .app-wordmark span {
+    color: rgba(255,255,255,0.3);
+    font-size: 9px;
+    letter-spacing: 8px;
+    display: block;
+    font-weight: 300;
+    margin-top: 2px;
+    text-align: center;
+  }
+
+  .status-pill {
+    margin-top: 12px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .status-pill.disconnected { background: rgba(96,112,128,0.15); color: var(--gray); border: 1px solid rgba(96,112,128,0.25); }
+  .status-pill.connected    { background: rgba(0,230,118,0.12);  color: var(--green); border: 1px solid rgba(0,230,118,0.3); }
+
+  .btn-ring {
+    margin-top: 24px;
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(96,112,128,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+    background: radial-gradient(circle, rgba(96,112,128,0.08) 0%, var(--mid) 70%);
+  }
+
+  .btn-ring.connected-ring {
+    border-color: rgba(0,230,118,0.5);
+    background: radial-gradient(circle, rgba(0,230,118,0.1) 0%, var(--mid) 70%);
+    box-shadow: 0 0 30px rgba(0,230,118,0.2);
+  }
+
+  .btn-ring.connected-ring::before {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    border: 1px solid rgba(0,230,118,0.2);
+    animation: pulse-ring 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-ring {
+    0%, 100% { transform: scale(1); opacity: 0.6; }
+    50% { transform: scale(1.08); opacity: 0; }
+  }
+
+  .btn-inner {
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    background: var(--card);
+    border: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+  }
+
+  .btn-icon {
+    font-size: 22px;
+    line-height: 1;
+  }
+
+  .btn-text {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 7px;
+    letter-spacing: 1.5px;
+    color: var(--gray);
+  }
+
+  .btn-text.c-text { color: var(--green); }
+
+  .info-card {
+    margin-top: 16px;
+    width: calc(100% - 32px);
+    background: var(--card);
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,0.06);
+    padding: 12px 14px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .info-card.connected-card {
+    border-color: rgba(0,230,118,0.25);
+    background: linear-gradient(135deg, rgba(0,230,118,0.06), var(--card));
+  }
+
+  .ic-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .ic-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--gray);
+    display: inline-block;
+    margin-right: 6px;
+  }
+
+  .ic-dot.green { background: var(--green); animation: blink 1.4s ease infinite; }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .ic-label { font-family: 'Share Tech Mono', monospace; font-size: 8px; letter-spacing: 1.5px; color: var(--gray); }
+  .ic-value { font-size: 9px; color: var(--white); font-weight: 600; letter-spacing: 0.5px; }
+  .ic-value.green { color: var(--green); }
+
+  .ic-divider { height: 1px; background: rgba(255,255,255,0.05); margin: 8px 0; }
+
+  .traffic-row {
+    display: flex;
+    gap: 8px;
+  }
+
+  .traffic-item {
+    flex: 1;
+  }
+
+  .ti-label { font-family: 'Share Tech Mono', monospace; font-size: 7px; letter-spacing: 1px; color: var(--gray); margin-bottom: 2px; }
+  .ti-value { font-size: 10px; font-weight: 700; color: var(--accent); }
+  .ti-value.gu { color: var(--green); }
+
+  .server-list {
+    width: calc(100% - 32px);
+    position: relative;
+    z-index: 1;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .sl-label { font-family: 'Share Tech Mono', monospace; font-size: 7px; letter-spacing: 2px; color: var(--gray); margin-bottom: 4px; }
+
+  .server-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--mid);
+    border-radius: 8px;
+    padding: 7px 10px;
+    border: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .server-row.selected {
+    background: rgba(0,229,255,0.06);
+    border-color: rgba(0,229,255,0.3);
+  }
+
+  .sr-flag { font-size: 14px; }
+  .sr-name { font-size: 9px; font-weight: 600; color: var(--white); flex: 1; }
+  .sr-name.sel { color: var(--accent); }
+  .sr-ip { font-family: 'Share Tech Mono', monospace; font-size: 7px; color: var(--gray); }
+  .sr-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); }
+
+  /* ── ARCH DIAGRAM ── */
+  .arch-section {
+    padding: 80px 24px;
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .arch-diagram {
+    background: var(--mid);
+    border: 1px solid rgba(0,229,255,0.15);
+    border-radius: 20px;
+    padding: 40px;
+    margin-top: 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .arch-diagram::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 60% at 50% 0%, rgba(0,229,255,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .arch-row {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: stretch;
+  }
+
+  .arch-box {
+    background: var(--card);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 20px 24px;
+    flex: 1;
+    min-width: 140px;
+    max-width: 200px;
+    position: relative;
+  }
+
+  .arch-box.highlight {
+    border-color: rgba(0,229,255,0.35);
+    background: linear-gradient(135deg, rgba(0,229,255,0.06), var(--card));
+  }
+
+  .arch-box-icon { font-size: 24px; margin-bottom: 10px; }
+  .arch-box-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+  .arch-box-desc {
+    font-size: 10px;
+    color: var(--gray);
+    line-height: 1.6;
+    font-family: 'Share Tech Mono', monospace;
+    letter-spacing: 0.3px;
+  }
+
+  .arch-arrow {
+    display: flex;
+    align-items: center;
+    color: var(--accent);
+    font-size: 18px;
+    opacity: 0.5;
+    padding-top: 20px;
+  }
+
+  .arch-connector {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0,229,255,0.3), transparent);
+    margin: 24px 0;
+    position: relative;
+  }
+
+  .arch-connector::after {
+    content: 'StateFlow';
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9px;
+    color: var(--accent);
+    background: var(--mid);
+    padding: 0 8px;
+    letter-spacing: 1px;
+  }
+
+  /* ── FEATURES GRID ── */
+  .features-section {
+    padding: 80px 24px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+    margin-top: 40px;
+  }
+
+  .feature-card {
+    background: var(--card);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+    padding: 24px;
+    transition: border-color 0.3s, transform 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--fc-color, var(--accent)), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .feature-card:hover { border-color: rgba(0,229,255,0.25); transform: translateY(-4px); }
+  .feature-card:hover::before { opacity: 1; }
+
+  .feature-card.green-fc { --fc-color: var(--green); }
+  .feature-card.orange-fc { --fc-color: var(--orange); }
+
+  .fc-icon { font-size: 28px; margin-bottom: 14px; }
+  .fc-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    color: var(--white);
+  }
+  .fc-desc { font-size: 12px; color: var(--gray); line-height: 1.7; }
+
+  /* ── STACK SECTION ── */
+  .stack-section {
+    padding: 80px 24px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .stack-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 40px;
+    justify-content: center;
+  }
+
+  .stack-chip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: var(--card);
+    font-size: 13px;
+    font-weight: 600;
+    font-family: 'Rajdhani', sans-serif;
+    letter-spacing: 1px;
+    color: var(--white);
+    transition: all 0.3s;
+  }
+
+  .stack-chip:hover { border-color: rgba(0,229,255,0.4); color: var(--accent); }
+  .stack-chip-icon { font-size: 18px; }
+
+  /* ── WG INTEGRATION ── */
+  .code-section {
+    padding: 80px 24px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .code-block {
+    background: #07090f;
+    border: 1px solid rgba(0,229,255,0.15);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-top: 40px;
+  }
+
+  .code-header {
+    background: var(--mid);
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .code-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .code-dot:nth-child(1) { background: #ff5f57; }
+  .code-dot:nth-child(2) { background: #ffbd2e; }
+  .code-dot:nth-child(3) { background: #28ca42; }
+  .code-filename {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: var(--gray);
+    margin-left: 8px;
+    letter-spacing: 1px;
+  }
+
+  .code-body {
+    padding: 24px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12px;
+    line-height: 1.9;
+    overflow-x: auto;
+  }
+
+  .c-comment { color: #4a6070; }
+  .c-keyword { color: #ff79c6; }
+  .c-type    { color: var(--accent); }
+  .c-string  { color: var(--green); }
+  .c-fn      { color: #50fa7b; }
+  .c-num     { color: var(--orange); }
+  .c-white   { color: var(--white); }
+
+  /* ── FOOTER ── */
+  .footer {
+    padding: 60px 24px;
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    position: relative;
+  }
+
+  .footer-logo {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: 8px;
+    background: linear-gradient(135deg, var(--accent), rgba(255,255,255,0.6));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 12px;
+  }
+
+  .footer-sub {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--gray);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+
+  .footer-link {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--gray);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-link:hover { color: var(--accent); }
+
+  /* ── DIVIDER ── */
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0,229,255,0.2), transparent);
+    margin: 0 auto;
+    max-width: 900px;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── STATE FLOW DIAGRAM ── */
+  .state-diagram {
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 32px;
+    background: var(--mid);
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .state-node {
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    border: 1.5px solid;
+    white-space: nowrap;
+  }
+
+  .state-node.disconnected { border-color: var(--gray);   color: var(--gray);   background: rgba(96,112,128,0.08); }
+  .state-node.connecting   { border-color: var(--orange); color: var(--orange); background: rgba(255,109,0,0.08); }
+  .state-node.connected    { border-color: var(--green);  color: var(--green);  background: rgba(0,230,118,0.08); }
+  .state-node.error        { border-color: var(--red);    color: var(--red);    background: rgba(255,23,68,0.08); }
+
+  .state-arrow {
+    color: var(--gray2);
+    font-size: 14px;
+    font-family: 'Share Tech Mono', monospace;
+  }
+
+  /* responsive */
+  @media (max-width: 600px) {
+    .phones-row { flex-direction: column; align-items: center; }
+    .phone.hero-phone { width: 220px; height: 440px; }
+    .arch-box { max-width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+
+  <div class="hero-badge">ANDROID VPN CLIENT · KOTLIN · JETPACK COMPOSE</div>
+
+  <h1 class="hero-title">
+    <span>NOVA</span>
+    <div class="vpn-sub">VPN</div>
+  </h1>
+
+  <p class="hero-tagline">SECURE · PRIVATE · FAST · OPEN SOURCE</p>
+
+  <div class="hero-tags">
+    <div class="tag accent">VpnService API</div>
+    <div class="tag green">WireGuard Ready</div>
+    <div class="tag">MVVM</div>
+    <div class="tag">Hilt DI</div>
+    <div class="tag">Kotlin Coroutines</div>
+    <div class="tag">StateFlow</div>
+    <div class="tag accent">Jetpack Compose</div>
+    <div class="tag">Material 3</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════════
+     PHONE SCREENS
+════════════════════════════════════════════════ -->
+<section class="screens-section">
+  <div style="text-align:center">
+    <div class="section-label">UI SCREENS</div>
+    <h2 class="section-title">MINIMAL. POWERFUL. SECURE.</h2>
+    <p class="section-sub">Dark-tech aesthetic with animated state transitions, live traffic stats, and per-region server switching.</p>
+  </div>
+
+  <div class="phones-row">
+
+    <!-- Screen 1: Disconnected -->
+    <div class="phone-wrap">
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="screen-disconnected">
+          <div class="sg"></div>
+          <div style="height:36px"></div>
+          <div class="app-wordmark">NOVA<span>VPN</span></div>
+          <div class="status-pill disconnected">● NOT PROTECTED</div>
+
+          <div style="height:20px"></div>
+          <div class="btn-ring">
+            <div class="btn-inner">
+              <div class="btn-icon">🔑</div>
+              <div class="btn-text">CONNECT</div>
+            </div>
+          </div>
+
+          <div style="height:16px"></div>
+          <div class="info-card">
+            <div class="ic-row">
+              <span class="ic-label"><span class="ic-dot"></span>STATUS</span>
+              <span class="ic-value">IDLE</span>
+            </div>
+            <div class="ic-divider"></div>
+            <div class="ic-row" style="margin-bottom:0">
+              <span class="ic-label">TUNNEL</span>
+              <span class="ic-value">—</span>
+            </div>
+          </div>
+
+          <div style="height:10px"></div>
+          <div class="server-list">
+            <div class="sl-label">SELECT SERVER</div>
+            <div class="server-row selected">
+              <div class="sr-flag">🇺🇸</div>
+              <div>
+                <div class="sr-name sel">United States</div>
+                <div class="sr-ip">198.51.100.1</div>
+              </div>
+              <div class="sr-dot"></div>
+            </div>
+            <div class="server-row">
+              <div class="sr-flag">🇩🇪</div>
+              <div>
+                <div class="sr-name">Germany</div>
+                <div class="sr-ip">203.0.113.1</div>
+              </div>
+            </div>
+            <div class="server-row">
+              <div class="sr-flag">🇸🇬</div>
+              <div>
+                <div class="sr-name">Singapore</div>
+                <div class="sr-ip">192.0.2.1</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="phone-label">DISCONNECTED</div>
+    </div>
+
+    <!-- Screen 2: Connected (hero, center, larger) -->
+    <div class="phone-wrap">
+      <div class="phone hero-phone">
+        <div class="phone-notch"></div>
+        <div class="screen-disconnected" style="background: linear-gradient(180deg, #001a10 0%, #030f08 50%, #0a0f1e 100%);">
+          <div class="sg" style="background-image: linear-gradient(rgba(0,230,118,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,230,118,0.03) 1px,transparent 1px);"></div>
+          <div style="height:40px"></div>
+          <div class="app-wordmark" style="color: var(--green)">NOVA<span>VPN</span></div>
+          <div class="status-pill connected">● CONNECTED</div>
+
+          <div style="height:20px"></div>
+          <div class="btn-ring connected-ring">
+            <div class="btn-inner" style="background: linear-gradient(135deg, rgba(0,230,118,0.1), var(--card)); border-color: rgba(0,230,118,0.2);">
+              <div class="btn-icon">🔒</div>
+              <div class="btn-text c-text">DISCONNECT</div>
+            </div>
+          </div>
+
+          <div style="height:16px"></div>
+          <div class="info-card connected-card">
+            <div class="ic-row">
+              <span class="ic-label"><span class="ic-dot green"></span>STATUS</span>
+              <span class="ic-value green">01:23:45</span>
+            </div>
+            <div class="ic-row">
+              <span class="ic-label">SERVER</span>
+              <span class="ic-value">198.51.100.1</span>
+            </div>
+            <div class="ic-divider"></div>
+            <div class="traffic-row">
+              <div class="traffic-item">
+                <div class="ti-label">↓ DOWNLOAD</div>
+                <div class="ti-value">142.5 MB</div>
+              </div>
+              <div class="traffic-item">
+                <div class="ti-label">↑ UPLOAD</div>
+                <div class="ti-value gu">38.2 MB</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="height:10px"></div>
+          <div class="server-list">
+            <div class="sl-label">SELECT SERVER</div>
+            <div class="server-row selected" style="border-color: rgba(0,230,118,0.3); background: rgba(0,230,118,0.06);">
+              <div class="sr-flag">🇺🇸</div>
+              <div>
+                <div class="sr-name" style="color:var(--green)">United States</div>
+                <div class="sr-ip">198.51.100.1</div>
+              </div>
+              <div class="sr-dot" style="background: var(--green)"></div>
+            </div>
+            <div class="server-row">
+              <div class="sr-flag">🇩🇪</div>
+              <div>
+                <div class="sr-name">Germany</div>
+                <div class="sr-ip">203.0.113.1</div>
+              </div>
+            </div>
+            <div class="server-row">
+              <div class="sr-flag">🇯🇵</div>
+              <div>
+                <div class="sr-name">Japan</div>
+                <div class="sr-ip">192.0.2.2</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="phone-label" style="color: var(--green)">CONNECTED ✓</div>
+    </div>
+
+    <!-- Screen 3: Connecting -->
+    <div class="phone-wrap">
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="screen-disconnected" style="background: linear-gradient(180deg, #1a0d00 0%, #0f0800 50%, #0a0f1e 100%);">
+          <div class="sg" style="background-image: linear-gradient(rgba(255,109,0,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,109,0,0.03) 1px,transparent 1px);"></div>
+          <div style="height:36px"></div>
+          <div class="app-wordmark" style="color:var(--orange)">NOVA<span>VPN</span></div>
+          <div class="status-pill" style="background:rgba(255,109,0,0.1); color:var(--orange); border-color:rgba(255,109,0,0.3)">⟳ CONNECTING</div>
+
+          <div style="height:20px"></div>
+          <div class="btn-ring" style="border-color:rgba(255,109,0,0.4); background: radial-gradient(circle,rgba(255,109,0,0.08) 0%, var(--mid) 70%);">
+            <div class="btn-inner" style="background: linear-gradient(135deg, rgba(255,109,0,0.08), var(--card));">
+              <div class="btn-icon">⟳</div>
+              <div class="btn-text" style="color:var(--orange)">CANCEL</div>
+            </div>
+          </div>
+
+          <div style="height:16px"></div>
+          <div class="info-card" style="border-color: rgba(255,109,0,0.25); background: linear-gradient(135deg, rgba(255,109,0,0.06), var(--card));">
+            <div class="ic-row" style="margin-bottom:0; justify-content:center;">
+              <span style="color:var(--orange); font-family:'Share Tech Mono',monospace; font-size:9px; letter-spacing:1.5px;">
+                ESTABLISHING SECURE TUNNEL...
+              </span>
+            </div>
+          </div>
+
+          <div style="height:10px"></div>
+          <div class="server-list">
+            <div class="sl-label">SELECT SERVER</div>
+            <div class="server-row selected" style="border-color:rgba(255,109,0,0.3); background:rgba(255,109,0,0.05);">
+              <div class="sr-flag">🇩🇪</div>
+              <div>
+                <div class="sr-name" style="color:var(--orange)">Germany</div>
+                <div class="sr-ip">203.0.113.1</div>
+              </div>
+              <div style="width:6px;height:6px;border-radius:50%;background:var(--orange);"></div>
+            </div>
+            <div class="server-row">
+              <div class="sr-flag">🇺🇸</div>
+              <div>
+                <div class="sr-name">United States</div>
+                <div class="sr-ip">198.51.100.1</div>
+              </div>
+            </div>
+            <div class="server-row">
+              <div class="sr-flag">🇬🇧</div>
+              <div>
+                <div class="sr-name">United Kingdom</div>
+                <div class="sr-ip">192.0.2.3</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="phone-label" style="color:var(--orange)">CONNECTING...</div>
+    </div>
+
+  </div><!-- /phones-row -->
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════════
+     ARCHITECTURE
+════════════════════════════════════════════════ -->
+<section class="arch-section">
+  <div style="text-align:center">
+    <div class="section-label">ARCHITECTURE</div>
+    <h2 class="section-title">CLEAN MVVM LAYERING</h2>
+    <p class="section-sub" style="margin:0 auto">Each layer is isolated, testable, and replaceable. WireGuard plugs in at a single point.</p>
+  </div>
+
+  <div class="arch-diagram">
+    <div class="arch-row">
+      <div class="arch-box highlight">
+        <div class="arch-box-icon">🖥️</div>
+        <div class="arch-box-title">COMPOSE UI</div>
+        <div class="arch-box-desc">MainScreen<br>ConnectButton<br>StatusCard<br>ServerSelector</div>
+      </div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-box highlight">
+        <div class="arch-box-icon">🧠</div>
+        <div class="arch-box-title">VIEWMODEL</div>
+        <div class="arch-box-desc">VpnViewModel<br>StateFlow<br>UiEvents<br>Permission flow</div>
+      </div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-box highlight">
+        <div class="arch-box-icon">📦</div>
+        <div class="arch-box-title">REPOSITORY</div>
+        <div class="arch-box-desc">VpnRepository<br>prepareVpn()<br>connect()<br>disconnect()</div>
+      </div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-box highlight">
+        <div class="arch-box-icon">🔌</div>
+        <div class="arch-box-title">VPN SERVICE</div>
+        <div class="arch-box-desc">NovaVpnService<br>VpnService API<br>TUN Interface<br>Tunnel Loop</div>
+      </div>
+    </div>
+
+    <div class="arch-connector"></div>
+
+    <!-- State machine -->
+    <div class="state-diagram">
+      <div class="state-node disconnected">DISCONNECTED</div>
+      <div class="state-arrow">──▶</div>
+      <div class="state-node connecting">CONNECTING</div>
+      <div class="state-arrow">──▶</div>
+      <div class="state-node connected">CONNECTED</div>
+      <div class="state-arrow">──▶</div>
+      <div class="state-node connecting">DISCONNECTING</div>
+      <div class="state-arrow">──▶</div>
+      <div class="state-node disconnected">DISCONNECTED</div>
+      <br style="flex-basis:100%">
+      <div style="width:100%; text-align:center; margin-top:12px;">
+        <span class="state-arrow" style="font-size:11px; letter-spacing:1px;">
+          ↕ &nbsp;Error state accessible from any point
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════════
+     FEATURES
+════════════════════════════════════════════════ -->
+<section class="features-section">
+  <div style="text-align:center">
+    <div class="section-label">FEATURES</div>
+    <h2 class="section-title">BUILT FOR PRODUCTION</h2>
+  </div>
+
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="fc-icon">🛡️</div>
+      <div class="fc-title">ANDROID VPNSERVICE</div>
+      <div class="fc-desc">Full VpnService subclass. Builds a real TUN interface via ParcelFileDescriptor. Routes all device traffic.</div>
+    </div>
+    <div class="feature-card green-fc">
+      <div class="fc-icon">🔑</div>
+      <div class="fc-title">WIREGUARD READY</div>
+      <div class="fc-desc">Every TODO:WIREGUARD marker shows exactly where GoBackend plugs in. Zero restructuring needed.</div>
+    </div>
+    <div class="feature-card">
+      <div class="fc-icon">⚡</div>
+      <div class="fc-title">COROUTINES + FLOW</div>
+      <div class="fc-desc">Non-blocking tunnel loop, StateFlow state machine, SharedFlow for one-shot UI events.</div>
+    </div>
+    <div class="feature-card orange-fc">
+      <div class="fc-icon">💉</div>
+      <div class="fc-title">HILT DI</div>
+      <div class="fc-desc">Singleton VpnRepository injected into ViewModel. Clean, testable, no manual factories.</div>
+    </div>
+    <div class="feature-card">
+      <div class="fc-icon">🎨</div>
+      <div class="fc-title">ANIMATED UI</div>
+      <div class="fc-desc">Pulsing glow ring, rotating connecting arc, color-transition gradients, live traffic counters.</div>
+    </div>
+    <div class="feature-card green-fc">
+      <div class="fc-icon">🔐</div>
+      <div class="fc-title">PERMISSION FLOW</div>
+      <div class="fc-desc">Full VPN permission request via ActivityResultContracts. Handles granted, denied, and revoke cases.</div>
+    </div>
+    <div class="feature-card">
+      <div class="fc-icon">📡</div>
+      <div class="fc-title">FOREGROUND SERVICE</div>
+      <div class="fc-desc">Persistent notification with Disconnect action. Keeps VPN alive in background. Boot receiver for auto-reconnect.</div>
+    </div>
+    <div class="feature-card orange-fc">
+      <div class="fc-icon">🌍</div>
+      <div class="fc-title">MULTI-REGION</div>
+      <div class="fc-desc">5 server presets with animated selector. Live server switching with auto-reconnect when connected.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════════
+     TECH STACK
+════════════════════════════════════════════════ -->
+<section class="stack-section">
+  <div style="text-align:center">
+    <div class="section-label">TECH STACK</div>
+    <h2 class="section-title">MODERN ANDROID</h2>
+  </div>
+
+  <div class="stack-row">
+    <div class="stack-chip"><span class="stack-chip-icon">🤖</span> Kotlin 2.0</div>
+    <div class="stack-chip"><span class="stack-chip-icon">🎨</span> Jetpack Compose</div>
+    <div class="stack-chip"><span class="stack-chip-icon">🧱</span> Material 3</div>
+    <div class="stack-chip"><span class="stack-chip-icon">💉</span> Hilt DI</div>
+    <div class="stack-chip"><span class="stack-chip-icon">⚡</span> Coroutines</div>
+    <div class="stack-chip"><span class="stack-chip-icon">🌊</span> StateFlow</div>
+    <div class="stack-chip"><span class="stack-chip-icon">🔌</span> VpnService API</div>
+    <div class="stack-chip"><span class="stack-chip-icon">📱</span> minSdk 26</div>
+    <div class="stack-chip"><span class="stack-chip-icon">🏗️</span> AGP 8.5</div>
+    <div class="stack-chip"><span class="stack-chip-icon">🔒</span> WireGuard Ready</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════════
+     CODE SAMPLE
+════════════════════════════════════════════════ -->
+<section class="code-section">
+  <div style="text-align:center">
+    <div class="section-label">INTEGRATION</div>
+    <h2 class="section-title">WIREGUARD IN 4 LINES</h2>
+    <p class="section-sub" style="margin: 0 auto;">Replace the mock tunnel with GoBackend. The VpnService.Builder stays identical.</p>
+  </div>
+
+  <div class="code-block">
+    <div class="code-header">
+      <div class="code-dot"></div>
+      <div class="code-dot"></div>
+      <div class="code-dot"></div>
+      <div class="code-filename">NovaVpnService.kt — WireGuard integration point</div>
+    </div>
+    <div class="code-body">
+<span class="c-comment">// ── TODO:WIREGUARD ─────────────────────────────────────────</span><br>
+<span class="c-comment">// Replace runTunnel() mock loop with these 4 lines:</span><br>
+<br>
+<span class="c-keyword">val</span> <span class="c-white">backend</span> <span class="c-white">=</span> <span class="c-type">GoBackend</span><span class="c-white">(</span><span class="c-keyword">this</span><span class="c-white">)</span><br>
+<span class="c-keyword">val</span> <span class="c-white">tunnel</span>  <span class="c-white">=</span> <span class="c-keyword">object</span> : <span class="c-type">Tunnel</span> <span class="c-white">{</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-keyword">override fun</span> <span class="c-fn">getName</span><span class="c-white">() =</span> <span class="c-string">"NovaVPN"</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-keyword">override fun</span> <span class="c-fn">onStateChange</span><span class="c-white">(state:</span> <span class="c-type">Tunnel.State</span><span class="c-white">) {</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-white">_vpnState.value =</span> <span class="c-keyword">if</span> <span class="c-white">(state ==</span> <span class="c-type">Tunnel.State</span><span class="c-white">.UP)</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-type">VpnState</span><span class="c-white">.</span><span class="c-fn">Connected</span><span class="c-white">(serverIp = config.serverIp)</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-keyword">else</span> <span class="c-type">VpnState</span><span class="c-white">.Disconnected</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-white">}</span><br>
+<span class="c-white">}</span><br>
+<span class="c-keyword">val</span> <span class="c-white">wgConfig =</span> <span class="c-type">Config</span><span class="c-white">.</span><span class="c-fn">parse</span><span class="c-white">(</span><span class="c-fn">buildWireGuardConfig</span><span class="c-white">(config))</span><br>
+<span class="c-white">backend.</span><span class="c-fn">setState</span><span class="c-white">(tunnel,</span> <span class="c-type">Tunnel.State</span><span class="c-white">.UP, wgConfig)</span><br>
+<br>
+<span class="c-comment">// ── VpnService.Builder stays 100% identical ─────────────────</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="footer-logo">NOVAVPN</div>
+  <div class="footer-sub">PRODUCTION-GRADE ANDROID VPN STARTER · MIT LICENSE</div>
+  <div class="footer-links">
+    <a class="footer-link" href="#">KOTLIN</a>
+    <a class="footer-link" href="#">JETPACK COMPOSE</a>
+    <a class="footer-link" href="#">WIREGUARD</a>
+    <a class="footer-link" href="#">ANDROID VPNSERVICE</a>
+    <a class="footer-link" href="#">HILT</a>
+  </div>
+  <div style="margin-top:32px; font-family:'Share Tech Mono',monospace; font-size:10px; color: #2a3a4a; letter-spacing:2px;">
+    BUILT WITH KOTLIN 2.0 · AGP 8.5 · COMPOSE BOM 2024.10
+  </div>
+</footer>
+
+</body>
+</html>

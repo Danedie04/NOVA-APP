@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Base application theme -->
+    <style name="Theme.NovaVPN" parent="android:Theme.Material.NoTitleBar">
+        <item name="android:windowBackground">@color/nova_black</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+
+    <!-- Splash screen theme -->
+    <style name="Theme.NovaVPN.Splash" parent="Theme.NovaVPN">
+        <item name="android:windowBackground">@color/nova_black</item>
+    </style>
+
+</resources>

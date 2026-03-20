@@ -37,12 +37,12 @@
 
 | Disconnected | Connected | Connecting |
 |:---:|:---:|:---:|
-| ![Disconnected Screen](screenshots/disconnected.png) | ![Connected Screen](screenshots/connected.png) | ![Connecting Screen](screenshots/connecting.png) |
+| ![Disconnected Screen](https://github.com/Danedie04/NOVA-APP/blob/main/Screenshots/disconnected.png) | ![Connected Screen](https://github.com/Danedie04/NOVA-APP/blob/main/Screenshots/connected.png) | ![Connecting Screen](https://github.com/Danedie04/NOVA-APP/blob/main/Screenshots/connecting.png) |
 | *Idle — ready to connect* | *Active tunnel with live stats* | *Handshake in progress* |
 
 </div>
 
-> **Note:** Screenshots are rendered from the included [visual canvas](nova-canvas.html). Open it in a browser to see all UI states in full fidelity.
+> **Note:** Screenshots are rendered from the included [visual canvas](https://github.com/Danedie04/NOVA-APP/blob/main/Screenshots/nova-canvas.html). Open it in a browser to see all UI states in full fidelity.
 
 ---
 
